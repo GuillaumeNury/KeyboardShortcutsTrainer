@@ -1,0 +1,11 @@
+:host {
+	display: block;
+	box-shadow: 1px 1px 5px black;
+	padding: 1em;
+}
+.input {
+	width: 100%;
+}
+.success {
+	background-color: lightgreen;
+}
