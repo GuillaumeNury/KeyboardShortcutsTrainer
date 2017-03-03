@@ -5,11 +5,15 @@ import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
 import { TrainingComponent } from './training/training.component';
+import { TextEditorComponent } from './text-editor/text-editor.component';
+import { AutoHeightDirective } from './directives/auto-height.directive';
 
 @NgModule({
   declarations: [
     AppComponent,
-    TrainingComponent
+    TrainingComponent,
+    TextEditorComponent,
+    AutoHeightDirective
   ],
   imports: [
     BrowserModule,

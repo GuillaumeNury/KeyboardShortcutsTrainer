@@ -1,5 +1,9 @@
 <div class="lui container">
 	<h1>Keybord Shortcuts Training</h1>
 
+
+	<app-text-editor [canDelete]="true"></app-text-editor>
+
+
 	<app-training *ngFor="let objective of objectives" [initialState]="state" [objective]="objective"></app-training>
 </div>

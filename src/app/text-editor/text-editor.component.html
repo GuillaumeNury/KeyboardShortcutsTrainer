@@ -1,0 +1,11 @@
+<p>{{ getCarretPosition2D() }}</p>
+<p>{{ state.carretPosition }}</p>
+
+<textarea
+	#textarea
+	appAutoHeight
+	class="lui column mobile-12"
+	(keydown)="onKeyDown($event)"
+	(click)="onClick($event)"
+	(mousedown)="onClick($event)"
+	(mouseup)="onClick($event)">{{ state.textContent }}</textarea>

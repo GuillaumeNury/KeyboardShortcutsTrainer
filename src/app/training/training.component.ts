@@ -55,7 +55,7 @@ export class TrainingComponent implements OnInit {
 		) {
 			this.keysStack.push(new Key($event));
 		} else {
-			this.abortEvent($event);
+			// this.abortEvent($event);
 		}
 
 		this.updateState();
