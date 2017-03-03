@@ -113,6 +113,41 @@ export class TextEditorComponent implements OnInit {
 		setTimeout(() => this.moveCarretDown([row, col]));
 	}
 
+	public copyLineUp(): void {
+		const [row, col] = this.getCarretPosition2D();
+
+		if (row <= 0) { return; }
+
+		let lines = this.getLines();
+
+		lines = [
+			...lines.slice(0, Math.max(0, row)),
+			lines[row],
+			...lines.slice(row, lines.length )
+		];
+
+		this.state.textContent = lines.join('\n');
+
+		setTimeout(() => this.setCarretPosition2D(row, col));
+	}
+
+	public copyLineDown(): void {
+		const [row, col] = this.getCarretPosition2D();
+
+		let lines = this.getLines();
+
+		if (row >= lines.length - 1) { return; }
+
+		lines = [
+			...lines.slice(0, row),
+			lines[row],
+			...lines.slice(row, lines.length)
+		];
+
+		this.state.textContent = lines.join('\n');
+		setTimeout(() => this.moveCarretDown([row, col]));
+	}
+
 	public moveCarretUp(position?: number[]): void {
 		const [x, y] = position || this.getCarretPosition2D();
 		this.setCarretPosition2D(Math.max(0, x - 1), y);
@@ -145,12 +180,20 @@ export class TextEditorComponent implements OnInit {
 			switch ($event.keyCode) {
 				case KeyboardKeys.UP_ARROW:
 					if ($event.altKey) {
-						this.moveLineUp();
+						if ($event.shiftKey) {
+							this.copyLineUp();
+						} else {
+							this.moveLineUp();
+						}
 					}
 					break;
 				case KeyboardKeys.DOWN_ARROW:
 					if ($event.altKey) {
-						this.moveLineDown();
+						if ($event.shiftKey) {
+							this.copyLineDown();
+						} else {
+							this.moveLineDown();
+						}
 					}
 					break;
 			}
@@ -192,6 +235,6 @@ export class TextEditorComponent implements OnInit {
 					this.state.carretSelection = this.getCarretSelection();
 				}
 			);
-		})
+		});
 	}
 }
